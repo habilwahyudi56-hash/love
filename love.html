@@ -1,430 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Untukmu — Khusus</title>
-    <style>
-        /* Reset sederhana */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ulangtahun Romantis (Multi Slide)</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Comic Sans MS',cursive,sans-serif;overflow:hidden}
+    body{
+      background: url('ultah.jpg') center/cover no-repeat;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+    }
+    main{width:100%;max-width:1000px;margin:0 auto;position:relative}
+    section{display:none;width:100%;margin:0 auto;position:relative;z-index:1}
+    section.active{display:block}
 
-        html,
-        body {
-            height: 100%
-        }
+    .emoji {position:absolute;font-size:30px;animation:floatUp 6s linear infinite;opacity:0.85;pointer-events:none}
+    @keyframes floatUp{0%{transform:translateY(100vh) rotate(0);opacity:0}20%{opacity:1}100%{transform:translateY(-120vh) rotate(360deg);opacity:0}}
 
-        body {
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: radial-gradient(circle at 10% 10%, #ffe6f0 0%, #fff 20%, #ffeef8 40%, #fff5f9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            color: #222
-        }
+    .card{background:rgba(255,255,255,0.95);padding:26px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.25);text-align:center}
+    .btn{display:inline-block;margin-top:14px;padding:10px 22px;border-radius:24px;border:none;background:#ff6f91;color:#fff;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.15)}
 
-        .card {
-            width: 100%;
-            max-width: 920px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
-            border-radius: 18px;
-            box-shadow: 0 12px 40px rgba(12, 12, 30, 0.12);
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 0;
-            align-items: stretch
-        }
+    .card h1{margin:0 0 10px;font-size:28px}
+    .card p{margin:6px 0}
 
-        @media (max-width:880px) {
-            .card {
-                grid-template-columns: 1fr;
-                max-width: 420px
-            }
-        }
+    .center-col{display:flex;flex-direction:column;align-items:center;gap:18px}
+    .photo-frame{width:320px;height:320px;border-radius:20px;padding:12px;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;border:6px solid #ffd6e0;box-shadow:0 8px 20px rgba(0,0,0,0.18)}
+    .photo-frame img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;display:block}
+    .typing-card{background:rgba(255,255,255,0.97);padding:18px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,0.12);max-width:760px;color:#333;text-align:left;font-size:18px;line-height:1.6}
+    #typed-text{white-space:pre-wrap;min-height:140px}
 
-        .left {
-            padding: 40px
-        }
+    .heart-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+    .heart-frame{width:360px;height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.2));}
+    .heart-frame img{width:100%;height:100%;object-fit:contain}
+    .heart-bg{background:linear-gradient(135deg,#ffd6e0,#ffb3d1);padding:10px;border-radius:24px}
 
-        .logo {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 14px
-        }
+    .typing-card-3{background:rgba(255,255,255,0.98);padding:18px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,0.12);max-width:760px;color:#333;text-align:left;font-size:18px;line-height:1.6}
+    #typed-3{white-space:pre-wrap;min-height:140px}
 
-        .logo .dot {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #ff7aa2, #ffb3d9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700
-        }
+    .small-hearts{display:flex;gap:10px;align-items:center}
+    .small-hearts span{font-size:28px;transform:translateY(0);animation:beat 1.2s infinite}
+    .small-hearts span:nth-child(2){animation-delay:.2s}
+    .small-hearts span:nth-child(3){animation-delay:.4s}
+    @keyframes beat{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
 
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px
-        }
-
-        p.lead {
-            color: #444;
-            margin-bottom: 18px
-        }
-
-        .typewriter {
-            font-size: 20px;
-            line-height: 1.5;
-            margin-top: 8px;
-            color: #333;
-            min-height: 3.2em
-        }
-
-        .controls {
-            display: flex;
-            gap: 12px;
-            margin-top: 22px;
-            flex-wrap: wrap
-        }
-
-        .btn {
-            padding: 10px 16px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, #ff7aa2, #ff5c96);
-            color: white
-        }
-
-        .btn-ghost {
-            background: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.07)
-        }
-
-        .reveal {
-            margin-top: 18px;
-            padding: 12px 14px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
-            border: 1px dashed rgba(255, 90, 140, 0.12)
-        }
-
-        /* kanan */
-        .right {
-            background: linear-gradient(180deg, #fff5fb, #fff0f7);
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            align-items: center;
-            justify-content: center
-        }
-
-        .heart {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            cursor: pointer;
-            position: relative
-        }
-
-        .heart svg {
-            width: 84px;
-            height: 84px;
-            transform-origin: center center;
-            transition: transform .18s ease
-        }
-
-        .hint {
-            font-size: 13px;
-            color: #6b6b6b
-        }
-
-        .customize {
-            width: 100%;
-            display: flex;
-            gap: 8px
-        }
-
-        .customize input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.06)
-        }
-
-        footer {
-            font-size: 13px;
-            color: #666;
-            margin-top: 10px
-        }
-
-        /* confetti placeholder */
-        canvas.confetti {
-            position: fixed;
-            left: 0;
-            top: 0;
-            pointer-events: none;
-            width: 100%;
-            height: 100%;
-            z-index: 9999
-        }
-
-        /* small animations */
-        .pulse {
-            animation: pulse 1s linear
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1)
-            }
-
-            50% {
-                transform: scale(1.08)
-            }
-
-            100% {
-                transform: scale(1)
-            }
-        }
-
-        /* little hearts */
-        .floating-heart {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(0) scale(0.7);
-            transition: transform 900ms cubic-bezier(.2, .9, .25, 1), opacity 900ms
-        }
-    </style>
+    @media (max-width:760px){.heart-frame{width:260px;height:240px}.photo-frame{width:260px;height:260px}.typing-card,.typing-card-3{font-size:16px}}
+  </style>
 </head>
-
 <body>
-    <div class="card">
-        <div class="left">
-            <div class="logo">
-                <div class="dot">K</div>
-                <div><strong>Untukmu</strong>
-                    <div style="font-size:12px;color:#6b6b6b">Buat dedikasimu</div>
-                </div>
-            </div>
-            <h1 id="title">Halo, sayang...</h1>
-            <p class="lead">Sebuah laman kecil ini kubuat khusus untukmu. Klik hati di sisi kanan atau ketik namamu di
-                bawah untuk melihat pesanku.</p>
+  <main>
+    <div id="emojis"></div>
 
-            <div class="typewriter" id="typewriter">Klik hati 💖 atau tekan "Kirim" untuk membuka pesan.</div>
+    <section id="slide1" class="active">
+      <div class="card">
+        <h1>Hii pacarku 🥰</h1>
+        <p>Aku punya sesuatuu nihh 🎁</p>
+        <p>Penasarannn gakk? 🤭</p>
+        <button class="btn" id="openBtn">Coba buka ➡️</button>
+      </div>
+    </section>
 
-            <div class="controls">
-                <button class="btn btn-primary" id="revealBtn">Kirim Pesan</button>
-                <button class="btn btn-ghost" id="playMelody">Putar Melodi</button>
-                <button class="btn btn-ghost" id="downloadBtn">Simpan sebagai HTML</button>
-            </div>
-
-            <div class="reveal" id="messageBox" style="display:none">
-                <strong>Pesan khusus:</strong>
-                <p id="finalMessage" style="margin-top:8px">Aku suka cara kamu membuat hariku lebih berwarna. Mau jadi
-                    bagian dari cerita hidupku?</p>
-            </div>
-
-            <div style="margin-top:18px">
-                <div style="font-size:13px;color:#666;margin-bottom:6px">Personalisasi (opsional)</div>
-                <div class="customize">
-                    <input id="nameInput" placeholder="Masukkan nama pacarmu (mis. Ayu)" />
-                    <input id="lineInput" placeholder="Tambahkan 1 kalimat singkat" />
-                </div>
-            </div>
-
-            <footer>Tip: ganti gambar, teks, atau warna sesukamu — cocok untuk surprise kecil 💌</footer>
+    <section id="slide2">
+      <div class="center-col">
+        <div class="photo-frame">
+          <img src="and1.jpg" alt="Foto Pacar">
         </div>
-
-        <div class="right">
-            <div class="heart" id="heartBtn" title="Klik untuk membuka pesan">
-                <!-- SVG hati -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path
-                        d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"
-                        fill="#ff6f98" stroke="none"></path>
-                </svg>
-            </div>
-            <div class="hint">Sentuh atau klik hati — biar aku bilang sesuatu manis.</div>
-            <div style="font-size:12px;color:#777;text-align:center">Mau aku tambahkan foto? Kirim fotonya, aku bantu
-                edit teksnya.</div>
+        <div class="typing-card">
+          <div id="typed-text"></div>
         </div>
-    </div>
+        <div style="margin-top:8px">
+          <button class="btn" onclick="showSlide(3)">Lanjut ke foto lucu ➡️</button>
+        </div>
+      </div>
+    </section>
 
-    <canvas class="confetti" id="confettiCanvas" aria-hidden></canvas>
+    <section id="slide3">
+      <div class="heart-wrap">
+        <div class="heart-bg">
+          <svg width="360" height="320" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+                <path d="M0.5,0.92 C0.5,0.92 0.11,0.64 0.11,0.4 C0.11,0.22 0.27,0.08 0.44,0.16 C0.5,0.19 0.5,0.19 0.5,0.19 C0.5,0.19 0.5,0.19 0.56,0.16 C0.73,0.08 0.89,0.22 0.89,0.4 C0.89,0.64 0.5,0.92 0.5,0.92 Z"/>
+              </clipPath>
+            </defs>
+            <foreignObject x="0" y="0" width="100%" height="100%">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden">
+                <div style="width:320px;height:280px;clip-path:url(#heartClip);-webkit-clip-path:url(#heartClip);overflow:hidden;display:flex;align-items:center;justify-content:center">
+                  <img src="and3.jpg" alt="Foto Love">
+                </div>
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+        <div class="small-hearts">
+          <span>💖</span><span>💕</span><span>🌸</span>
+        </div>
+        <div class="typing-card-3">
+          <div id="typed-3"></div>
+        </div>
+        <div style="margin-top:8px">
+          <button class="btn" style="background:#7cc7ff;margin-left:8px" onclick="alert('Slide berikutnya akan segera ku buat 💘')">Lanjut</button>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // --- Konten default yang bisa diganti ---
-        const defaultLines = [
-            "Waktu pertama kali kita bertemu, aku langsung tahu ada yang istimewa.",
-            "Setiap senyummu bikin siangku lebih terang, malamku lebih hangat.",
-            "Mau terus bareng kamu, dari cerita kecil sampai mimpi besar.",
-            "Maukah kamu jadi alasan aku tersenyum setiap hari? 💖"
-        ];
+  </main>
 
-        const nameInput = document.getElementById('nameInput');
-        const lineInput = document.getElementById('lineInput');
-        const typeEl = document.getElementById('typewriter');
-        const heartBtn = document.getElementById('heartBtn');
-        const revealBtn = document.getElementById('revealBtn');
-        const messageBox = document.getElementById('messageBox');
-        const finalMessage = document.getElementById('finalMessage');
-        const playMelody = document.getElementById('playMelody');
-        const downloadBtn = document.getElementById('downloadBtn');
+  <script>
+    const slides = document.querySelectorAll('section');
+    function showSlide(index){
+      slides.forEach(s=>s.classList.remove('active'));
+      slides[index].classList.add('active');
+      if(index===1){ startTypingOnce(); }
+      if(index===2){ startTyping3Once(); }
+    }
 
-        // simple typewriter
-        function typeLines(lines, el, speed = 40) {
-            el.innerHTML = '';
-            let i = 0;
-            function nextLine() {
-                if (i >= lines.length) return;
-                const line = lines[i++];
-                let j = 0;
-                const p = document.createElement('div');
-                el.appendChild(p);
-                const t = setInterval(() => {
-                    p.textContent = line.slice(0, j + 1);
-                    j++;
-                    if (j >= line.length) {
-                        clearInterval(t);
-                        setTimeout(nextLine, 450);
-                    }
-                }, speed);
-            }
-            nextLine();
-        }
+    document.getElementById('openBtn').addEventListener('click', ()=> showSlide(1));
 
-        // reveal action (heart or button)
-        function reveal() {
-            // build lines with personalization
-            const name = nameInput.value.trim();
-            const extra = lineInput.value.trim();
-            const lines = defaultLines.slice();
-            if (name) lines.unshift(`Untuk ${name},`);
-            if (extra) lines.push(extra);
-            typeLines(lines, typeEl, 35);
-            messageBox.style.display = 'block';
-            finalMessage.textContent = (name ? `${name}, ` : '') + 'Aku suka cara kamu membuat hariku lebih berwarna. Kalau kamu mau, ayo kita buat banyak cerita bersama.';
-            popHearts();
-            runConfetti();
-            pulseHeart();
-            playTune(0.12);
-        }
+    const emojiList = ['🎈','🎀','💖','✨','🥳','🌸'];
+    function createEmoji(){
+      const e = document.createElement('div');
+      e.className='emoji';
+      e.innerText = emojiList[Math.floor(Math.random()*emojiList.length)];
+      e.style.left = Math.random()*90 + 'vw';
+      e.style.top = '110vh';
+      e.style.fontSize = (18+Math.random()*30)+'px';
+      e.style.animationDuration = (4+Math.random()*5)+'s';
+      document.getElementById('emojis').appendChild(e);
+      setTimeout(()=>e.remove(),9000);
+    }
+    setInterval(createEmoji,900);
 
-        heartBtn.addEventListener('click', reveal);
-        revealBtn.addEventListener('click', reveal);
+    const paragraphs = [
+      'kamuu kenall ini nggak? 🧐',
+      'inii pacarr akuu 💕, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah 😅 tapi dia tetap sabar dan mau memaaf kan.',
+      'diaa adalah wanita lucuu 😍, selalu riang gembira 😂 dan penyayang 🥰 walau kadang ia sering menangis 😢 karena masalah tertentu, namun tidak apa apa hal ituu wajar untu seorang wanita 👩‍🦰 dan itu juga menjadi tugasku untu menenangkanya 🤗.'
+    ];
+    let pIndex=0,cIndex=0,started=false;const speed=35;
+    function startTypingOnce(){ if(started) return; started=true; typeNextChar(); }
+    function typeNextChar(){ const el=document.getElementById('typed-text'); if(pIndex>=paragraphs.length){return;} const current=paragraphs[pIndex]; if(cIndex<current.length){ const ch=current.charAt(cIndex); el.innerHTML+=ch; cIndex++; setTimeout(typeNextChar,speed);} else { el.innerHTML+="\n"; pIndex++; cIndex=0; setTimeout(typeNextChar,speed*6);} }
 
-        // play small melody using WebAudio
-        let audioCtx;
-        function playTune(durationMultiplier = 0.12) {
-            try {
-                audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-                const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
-                let t = audioCtx.currentTime;
-                notes.forEach((f, i) => {
-                    const o = audioCtx.createOscillator();
-                    const g = audioCtx.createGain();
-                    o.type = 'sine'; o.frequency.value = f;
-                    g.gain.value = 0.0001;
-                    o.connect(g); g.connect(audioCtx.destination);
-                    o.start(t + i * durationMultiplier);
-                    g.gain.exponentialRampToValueAtTime(0.12, t + i * durationMultiplier + 0.01);
-                    g.gain.exponentialRampToValueAtTime(0.0001, t + (i + 1) * durationMultiplier);
-                    o.stop(t + (i + 1) * durationMultiplier + 0.02);
-                });
-            } catch (e) { console.warn(e) }
-        }
-        playMelody.addEventListener('click', () => playTune(0.14));
+    const paras3 = [
+      'lihat inii......',
+      'lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu.',
+      'akuu barusan aja belajar bologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa.',
+      'tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu.'
+    ];
+    let p3=0,c3=0,started3=false;const speed3=35;
+    function startTyping3Once(){ if(started3) return; started3=true; type3Next(); }
+    function type3Next(){ const el=document.getElementById('typed-3'); if(p3>=paras3.length){return;} const cur=paras3[p3]; if(c3<cur.length){ const ch=cur.charAt(c3); el.innerHTML+=ch; c3++; setTimeout(type3Next,speed3);} else { el.innerHTML+="\n"; p3++; c3=0; setTimeout(type3Next,speed3*6);} }
 
-        // confetti (very small lightweight impl)
-        function runConfetti() {
-            const canvas = document.getElementById('confettiCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = innerWidth; canvas.height = innerHeight;
-            const pieces = [];
-            for (let i = 0; i < 60; i++) {
-                pieces.push({ x: Math.random() * canvas.width, y: Math.random() * -canvas.height * 0.6, r: Math.random() * 6 + 4, d: Math.random() * 40 + 15, s: (Math.random() * 2) + 0.5, a: Math.random() * 360 });
-            }
-            let frames = 0;
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (const p of pieces) {
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate((p.a + frames * p.s) / 180 * Math.PI);
-                    ctx.fillStyle = ['#ff6f98', '#ffd1e6', '#ffb3d9', '#fff1f7'][Math.floor(Math.random() * 4)];
-                    ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.6);
-                    ctx.restore();
-                    p.y += p.s + Math.sin(frames / 15 + p.d) * 0.5;
-                    if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width }
-                }
-                frames++;
-                if (frames < 260) requestAnimationFrame(draw); else ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-            draw();
-        }
-
-        // tiny heart pop animation
-        function popHearts() {
-            for (let i = 0; i < 12; i++) {
-                const h = document.createElement('div');
-                h.className = 'floating-heart';
-                h.style.left = (50 + (Math.random() * 80 - 40)) + 'px';
-                h.style.top = (50 + (Math.random() * 80 - 40)) + 'px';
-                h.style.opacity = 1;
-                h.innerHTML = '❤';
-                h.style.fontSize = (12 + Math.random() * 18) + 'px';
-                document.body.appendChild(h);
-                setTimeout(() => { h.style.transform = 'translateY(-120px) scale(1)'; h.style.opacity = 0; }, 20);
-                setTimeout(() => { h.remove() }, 1200);
-            }
-        }
-
-        function pulseHeart() {
-            const svg = heartBtn.querySelector('svg');
-            svg.classList.add('pulse');
-            setTimeout(() => svg.classList.remove('pulse'), 600);
-        }
-
-        // download current page as HTML file
-        downloadBtn.addEventListener('click', () => {
-            const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a'); a.href = url; a.download = 'untukmu.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-        });
-
-        // convenience: press Enter in input to reveal
-        [nameInput, lineInput].forEach(inp => inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { reveal(); } }));
-
-        // accessibility: if user prefers reduced motion, cut animations
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.querySelectorAll('.pulse').forEach(n => n.style.animation = 'none');
-        }
-
-        // initial small hint
-        typeEl.textContent = 'Klik hati atau tekan "Kirim Pesan" untuk membuka kalimat manis.';
-    </script>
+  </script>
 </body>
-
 </html>
