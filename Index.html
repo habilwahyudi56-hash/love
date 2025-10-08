@@ -1,197 +1,244 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kampanye OSIS - Tim Maju Bersama</title>
-    <style>
-        /* CSS untuk styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #007bff;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .hero {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-        }
-        .kandidat {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .kandidat div {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin: 10px;
-            width: 300px;
-            text-align: center;
-        }
-        .kandidat img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .visi-misi, .program {
-            background: white;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-        @media (max-width: 768px) {
-            .kandidat {
-                flex-direction: column;
-                align-items: center;
-            }
-            header h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paslon 01</title>
+<style>
+/* Reset & base */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background:#0d1b2a; color:#fff; line-height:1.6; overflow-x:hidden; }
+
+/* Neon animation */
+@keyframes neonGlow {
+  0%,100% { text-shadow:0 0 5px #00f,0 0 10px #00f,0 0 20px #00f; }
+  50% { text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 40px #00f; }
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg,#001f3f,#004080);
+    text-align:center;
+    padding:60px 20px;
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.5);
+}
+header h1 { font-size:3em; margin-bottom:10px; color:#fff; animation:neonGlow 2s infinite alternate; }
+header p { font-size:1.2em; color:#cce6ff; }
+
+/* Navbar */
+nav {
+    background:#001f3f;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 15px rgba(0,0,0,0.5);
+}
+nav .logo { color:#fff; font-weight:bold; font-size:20px; text-shadow:0 0 5px #0ff,0 0 10px #0ff; }
+nav ul { list-style:none; display:flex; gap:20px; transition:max-height 0.3s ease-in-out; }
+nav ul li a { color:#fff; text-decoration:none; font-weight:600; transition: color 0.3s; }
+nav ul li a:hover { color:#00f; text-shadow:0 0 5px #0ff,0 0 10px #0ff; }
+
+/* Hamburger */
+.hamburger { display:none; flex-direction: column; cursor:pointer; width:25px; height:20px; justify-content:space-between; }
+.hamburger span { height:3px; width:100%; background:#00f; border-radius:2px; transition: all 0.4s; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.active span:nth-child(2) { opacity:0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* Sections */
+section { max-width:1100px; margin:50px auto; padding:0 20px; opacity:0; transform:translateY(20px); transition:0.8s ease-out; }
+section.show { opacity:1; transform:translateY(0); }
+
+/* Hero */
+.hero {
+    text-align:center;
+    background:linear-gradient(135deg,#001f3f,#003366);
+    color:#fff;
+    padding:80px 20px;
+    border-radius:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.7);
+    border:2px solid #00f;
+}
+.hero p { color:#cce6ff; font-size:1.2em; margin-top:10px; }
+.hero button {
+    margin-top:25px;
+    padding:15px 30px;
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+    background:none;
+    border:2px solid #00f;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 0 10px #00f,0 0 20px #0ff,0 0 30px #00f;
+    transition:0.3s all;
+}
+.hero button:hover { background:#00f; color:#fff; box-shadow:0 0 20px #0ff,0 0 30px #00f,0 0 40px #0ff; }
+
+/* Kandidat */
+.kandidat { display:flex; justify-content:space-around; flex-wrap:wrap; gap:25px; margin-top:30px; }
+.kandidat div {
+    background:#002244;
+    padding:25px 20px;
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.5);
+    text-align:center;
+    flex:1 1 280px;
+    max-width:320px;
+    transition: transform 0.4s, box-shadow 0.4s;
+    border:2px solid #00f;
+}
+.kandidat div:hover { transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,0.8),0 0 15px #0ff; }
+.kandidat img { width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:15px; border:2px solid #00f; }
+.kandidat h3, .kandidat p { color:#fff; }
+
+/* Visi & Program & Kontak */
+.visi-misi, .program, #kontak {
+    background:#001f3f;
+    border:2px solid #00f;
+    border-radius:20px;
+    padding:35px 30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.6);
+}
+h2 { color:#00f; text-align:center; margin-bottom:20px; text-shadow:0 0 5px #0ff,0 0 10px #0ff; }
+ul { list-style: disc; padding-left:25px; margin-top:10px; }
+ul li { margin-bottom:10px; color:#fff; }
+
+/* Footer */
+footer {
+    text-align:center;
+    padding:25px;
+    background:#001f3f;
+    color:#fff;
+    box-shadow:0 -4px 10px rgba(0,0,0,0.5);
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    nav ul { flex-direction:column; position:absolute; top:55px; right:10px; width:200px; background:#001f3f; overflow:hidden; max-height:0; border-radius:10px; }
+    nav ul.show { max-height:300px; padding-bottom:10px; }
+    nav ul li { text-align:left; padding:10px 15px; }
+    .hamburger { display:flex; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Tim Maju Bersama</h1>
-        <p>Kampanye OSIS 2024 - Bersama Kita Wujudkan Sekolah Lebih Baik!</p>
-    </header>
 
-    <nav>
-        <a href="#home">Beranda</a>
-        <a href="#kandidat">Kandidat</a>
-        <a href="#visi">Visi & Misi</a>
-        <a href="#program">Program Kerja</a>
-        <a href="#kontak">Kontak</a>
-    </nav>
+<header>
+    <h1>Paslon 01</h1>
+    <p>Dari suara muda tercipta sekolah bijaksana</p>
+</header>
 
-    <section id="home" class="hero">
-        <h2>Selamat Datang di Kampanye Kami!</h2>
-        <p>Kami berkomitmen untuk membawa perubahan positif di sekolah kita. Dukung kami dengan suara Anda!</p>
-        <button onclick="alert('Terima kasih atas dukungannya!')">Dukung Kami</button>
-    </section>
+<nav>
+    <div class="logo">OSIS 2024</div>
+    <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#kandidat">Kandidat</a></li>
+        <li><a href="#visi">Visi & Misi</a></li>
+        <li><a href="#program">Program Kerja</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
-    <section id="kandidat">
-        <h2>Tentang Kandidat</h2>
-        <div class="kandidat">
-            <div>
-                <img src="foto-ketua.jpg" alt="Ketua OSIS">
-                <h3>Ahmad Rizki</h3>
-                <p>Ketua OSIS Calon</p>
-                <p>Siswa kelas XI IPA. Pengalaman sebagai ketua kelas dan aktif di kegiatan ekstrakurikuler.</p>
-            </div>
-            <div>
-                <img src="foto-wakil.jpg" alt="Wakil Ketua OSIS">
-                <h3>Siti Nurhaliza</h3>
-                <p>Wakil Ketua OSIS Calon</p>
-                <p>Siswa kelas XI IPS. Fokus pada pemberdayaan siswa dan lingkungan sekolah yang inklusif.</p>
-            </div>
+<section id="home" class="hero">
+    <h2>Selamat Datang di Kampanye Kami!</h2>
+    <p>Kami berkomitmen untuk membawa perubahan positif di sekolah kita. Dukung kami dengan suara Anda!</p>
+    <button onclick="alert('Terima kasih atas dukungannya!')">Dukung Kami</button>
+</section>
+
+<section id="kandidat">
+    <h2>Tentang Kandidat</h2>
+    <div class="kandidat">
+        <div>
+            <img src="foto-ketua.jpg" alt="Ketua OSIS">
+            <h3>Habil Qodam Wahyudi</h3>
+            <p>Calon Ketua OSIS</p>
+            <p>Siswa kelas XI TAV</p>
         </div>
-    </section>
+        <div>
+            <img src="foto-wakil.jpg" alt="Wakil Ketua OSIS">
+            <h3>Ahmad Safaulloh Jaelani</h3>
+            <p>Calon Wakil Ketua OSIS</p>
+            <p>Siswa kelas X TAV</p>
+        </div>
+    </div>
+</section>
 
-    <section id="visi" class="visi-misi">
-        <h2>Visi & Misi</h2>
-        <h3>Visi:</h3>
-        <p>Menciptakan lingkungan sekolah yang dinamis, inklusif, dan mendukung prestasi siswa secara holistik.</p>
-        
-        <h3>Misi:</h3>
-        <ul>
-            <li>Meningkatkan partisipasi siswa dalam kegiatan sekolah.</li>
-            <li>Memperbaiki fasilitas dan program belajar mengajar.</li>
-            <li>Membangun kolaborasi antara siswa, guru, dan orang tua.</li>
-        </ul>
-    </section>
+<section id="visi" class="visi-misi">
+    <h2>Visi & Misi</h2>
+    <h3>Visi:</h3>
+    <p>Mewujudkan lingkungan sekolah yang harmonis, hijau, dan peduli, dengan memperkuat komunikasi antara siswa, guru, dan kepala sekolah serta menciptakan ruang aman bagi siswa untuk berkembang secara emosional dan sosial.</p>
+    <h3>Misi:</h3>
+    <ul>
+        <li>Membangun komunikasi dua arah yang aktif dan terbuka antara siswa, guru, dan kepala sekolah untuk menampung serta menindaklanjuti aspirasi siswa.</li>
+        <li>Menginisiasi program penghijauan sekolah untuk menciptakan lingkungan yang sejuk, sehat, dan nyaman bagi seluruh warga sekolah.</li>
+        <li>Mengembangkan program konselor sebaya sebagai wadah siswa untuk saling mendukung dan berbagi cerita secara positif.</li>
+    </ul>
+</section>
 
-    <section id="program" class="program">
-        <h2>Program Kerja</h2>
-        <ul>
-            <li><strong>Program Pendidikan:</strong> Workshop skill digital dan konseling karir gratis setiap bulan.</li>
-            <li><strong>Program Lingkungan:</strong> Kampanye hijau sekolah dan penanaman pohon bersama.</li>
-            <li><strong>Program Sosial:</strong> Bakti sosial dan dukungan untuk siswa kurang mampu.</li>
-            <li><strong>Program Hiburan:</strong> Festival seni siswa dan lomba antar kelas.</li>
-        </ul>
-    </section>
+<section id="program" class="program">
+    <h2>Program Kerja</h2>
+    <ul>
+        <li><strong>Suara Siswa:</strong> Menampung aspirasi siswa dan memperkuat partisipasi aktif dalam kegiatan sekolah.</li>
+        <li><strong>Penghijauan:</strong> Menginisiasi program penghijauan untuk menciptakan lingkungan sekolah yang asri dan nyaman.</li>
+        <li><strong>Konselor Sebaya:</strong> Mengembangkan program konselor sebaya sebagai wadah siswa untuk saling mendukung dan berbagi cerita secara positif.</li>
+    </ul>
+</section>
 
-    <section id="kontak">
-        <h2>Hubungi Kami</h2>
-        <p>Email: timmajubersama@sekolah.com</p>
-        <p>Instagram: @timmajubersama</p>
-        <p>WhatsApp: 0812-3456-7890</p>
-        <button onclick="window.location.href='mailto:timmajubersama@sekolah.com'">Kirim Pesan</button>
-    </section>
+<section id="kontak">
+    <h2>Hubungi Kami</h2>
+    <p>Email: timmajubersama@sekolah.com</p>
+    <p>Instagram: @timmajubersama</p>
+    <p>WhatsApp: 0812-3456-7890</p>
+    <button onclick="window.location.href='mailto:timmajubersama@sekolah.com'">Kirim Pesan</button>
+</section>
 
-    <footer>
-        <p>&copy; 2024 Tim Maju Bersama. Semua hak dilindungi. Dibuat dengan ❤️ untuk OSIS.</p>
-    </footer>
+<footer>
+    <p>&copy; 2024 Tim Maju Bersama. Semua hak dilindungi. Dibuat dengan ❤️ untuk OSIS.</p>
+</footer>
 
-    <script>
-        // JavaScript sederhana untuk smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Hamburger toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    hamburger.classList.toggle('active');
+});
+
+// Fade-in scroll animation
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+    const triggerBottom = window.innerHeight / 5 * 4;
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom) { section.classList.add('show'); }
+    });
+});
+</script>
+
 </body>
 </html>
+
+
