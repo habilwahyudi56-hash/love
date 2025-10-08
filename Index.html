@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampanye OSIS - Tim Maju Bersama</title>
+    <style>
+        /* CSS untuk styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #007bff;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+        .kandidat {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .kandidat div {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+        }
+        .kandidat img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .visi-misi, .program {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .kandidat {
+                flex-direction: column;
+                align-items: center;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tim Maju Bersama</h1>
+        <p>Kampanye OSIS 2024 - Bersama Kita Wujudkan Sekolah Lebih Baik!</p>
+    </header>
+
+    <nav>
+        <a href="#home">Beranda</a>
+        <a href="#kandidat">Kandidat</a>
+        <a href="#visi">Visi & Misi</a>
+        <a href="#program">Program Kerja</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <h2>Selamat Datang di Kampanye Kami!</h2>
+        <p>Kami berkomitmen untuk membawa perubahan positif di sekolah kita. Dukung kami dengan suara Anda!</p>
+        <button onclick="alert('Terima kasih atas dukungannya!')">Dukung Kami</button>
+    </section>
+
+    <section id="kandidat">
+        <h2>Tentang Kandidat</h2>
+        <div class="kandidat">
+            <div>
+                <img src="foto-ketua.jpg" alt="Ketua OSIS">
+                <h3>Ahmad Rizki</h3>
+                <p>Ketua OSIS Calon</p>
+                <p>Siswa kelas XI IPA. Pengalaman sebagai ketua kelas dan aktif di kegiatan ekstrakurikuler.</p>
+            </div>
+            <div>
+                <img src="foto-wakil.jpg" alt="Wakil Ketua OSIS">
+                <h3>Siti Nurhaliza</h3>
+                <p>Wakil Ketua OSIS Calon</p>
+                <p>Siswa kelas XI IPS. Fokus pada pemberdayaan siswa dan lingkungan sekolah yang inklusif.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visi" class="visi-misi">
+        <h2>Visi & Misi</h2>
+        <h3>Visi:</h3>
+        <p>Menciptakan lingkungan sekolah yang dinamis, inklusif, dan mendukung prestasi siswa secara holistik.</p>
+        
+        <h3>Misi:</h3>
+        <ul>
+            <li>Meningkatkan partisipasi siswa dalam kegiatan sekolah.</li>
+            <li>Memperbaiki fasilitas dan program belajar mengajar.</li>
+            <li>Membangun kolaborasi antara siswa, guru, dan orang tua.</li>
+        </ul>
+    </section>
+
+    <section id="program" class="program">
+        <h2>Program Kerja</h2>
+        <ul>
+            <li><strong>Program Pendidikan:</strong> Workshop skill digital dan konseling karir gratis setiap bulan.</li>
+            <li><strong>Program Lingkungan:</strong> Kampanye hijau sekolah dan penanaman pohon bersama.</li>
+            <li><strong>Program Sosial:</strong> Bakti sosial dan dukungan untuk siswa kurang mampu.</li>
+            <li><strong>Program Hiburan:</strong> Festival seni siswa dan lomba antar kelas.</li>
+        </ul>
+    </section>
+
+    <section id="kontak">
+        <h2>Hubungi Kami</h2>
+        <p>Email: timmajubersama@sekolah.com</p>
+        <p>Instagram: @timmajubersama</p>
+        <p>WhatsApp: 0812-3456-7890</p>
+        <button onclick="window.location.href='mailto:timmajubersama@sekolah.com'">Kirim Pesan</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tim Maju Bersama. Semua hak dilindungi. Dibuat dengan ❤️ untuk OSIS.</p>
+    </footer>
+
+    <script>
+        // JavaScript sederhana untuk smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
